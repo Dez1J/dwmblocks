@@ -1,0 +1,14 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-c",
+      "-o",
+      "dwmblocks",
+      "dwmblocks.c"
+    ],
+    "directory": "/home/jiang/Suckless_J/BarStatus/dwmblocks_Modified",
+    "file": "/home/jiang/Suckless_J/BarStatus/dwmblocks_Modified/dwmblocks.c",
+    "output": "/home/jiang/Suckless_J/BarStatus/dwmblocks_Modified/dwmblocks"
+  }
+]
