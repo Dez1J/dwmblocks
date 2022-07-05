@@ -8,12 +8,14 @@
 
 void cut(char *sub, const char *, int n1, char *es);
 
+/* smprintf may be unsafe, or use 'asprintf' */
 char *smprintf(char *fmt, ...) {
   va_list fmtargs;
   char *ret;
   int len;
 
   va_start(fmtargs, fmt);
+  /* first vsnprintf: detection of str */
   len = vsnprintf(NULL, 0, fmt, fmtargs);
   va_end(fmtargs);
 
@@ -24,6 +26,7 @@ char *smprintf(char *fmt, ...) {
   }
 
   va_start(fmtargs, fmt);
+  /* second vsnprintf: assign str to *ret actually */
   vsnprintf(ret, len, fmt, fmtargs);
   va_end(fmtargs);
 
@@ -84,7 +87,7 @@ char *getmpdstat() {
     br = mpd_status_get_kbit_rate(theStatus);
     mpd_song_free(song);
     retstr =
-        smprintf(" %s - %s  [%s%s %s] %dk @%s \n", title, artist,
+        smprintf(" %s - %s  [%s%s %s] %dk @%s \n", title, artist,
                  mpdstat, play_flag, pos_pl, br, date);
   } else
     retstr = smprintf(" [S] \n");
@@ -92,6 +95,7 @@ char *getmpdstat() {
   mpd_connection_free(conn);
   return retstr;
 }
+
 void cut(char *sub, const char *ms, int n1, char *es) {
   int len1 = strlen(ms);
   int len2 = strlen(es);
@@ -103,3 +107,9 @@ void cut(char *sub, const char *ms, int n1, char *es) {
     strcpy(sub, ms);
   }
 }
+
+//int main(int argc, char *argv[])
+//{
+//    printf("%s", getmpdstat());
+//    return 0;
+//}

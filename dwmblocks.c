@@ -6,12 +6,12 @@
 #include <unistd.h>
 #define LENGTH(X) (sizeof(X) / sizeof(X[0]))
 //#define CMDLENGTH		50
-//#define CMDLENGTH		80
 #define CMDLENGTH 100
 
 #include "plugin/mpdstatus.c"
 #include "plugin/nettraf.c"
 #include "plugin/battery.c"
+#include "plugin/capslock_s.c"
 
 typedef struct {
   char *icon;
@@ -114,6 +114,10 @@ void setroot() {
   if (d) {
     dpy = d;
   }
+  /* get capslock status */
+  /* unsigned n; */
+  /* XkbGetIndicatorState(d, XkbUseCoreKbd, &n); */
+  /* strcat(statusstr[0], (n & 1)?" A":" a"); */
   screen = DefaultScreen(dpy);
   root = RootWindow(dpy, screen);
   XStoreName(dpy, root, statusstr[0]);

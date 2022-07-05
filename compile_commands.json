@@ -3,6 +3,7 @@
     "arguments": [
       "/usr/bin/cc",
       "-c",
+      "-g",
       "-o",
       "dwmblocks",
       "dwmblocks.c"

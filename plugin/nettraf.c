@@ -5,29 +5,6 @@
 #include <string.h>
 
 static unsigned long long int rec, sent;
-//char *
-//smprintf(char *fmt, ...)
-//{
-//	va_list fmtargs;
-//	char *ret;
-//	int len;
-//
-//	va_start(fmtargs, fmt);
-//	len = vsnprintf(NULL, 0, fmt, fmtargs);
-//	va_end(fmtargs);
-//
-//	ret = malloc(++len);
-//	if (ret == NULL) {
-//		perror("malloc");
-//		exit(1);
-//	}
-//
-//	va_start(fmtargs, fmt);
-//	vsnprintf(ret, len, fmt, fmtargs);
-//	va_end(fmtargs);
-//
-//	return ret;
-//}
 
 int
 parse_netdev(unsigned long long int *receivedabs, unsigned long long int *sentabs)
@@ -105,29 +82,5 @@ get_netusage(unsigned long long int *rec, unsigned long long int *sent)
 
 char *
 show_nettraf(){
-//    static unsigned long long int rec, sent;
-//	  char *netstats;
-//    netstats = get_netusage(&rec, &sent);
-//    printf("%s\n",netstats);
     return get_netusage(&rec, &sent);
 }
-
-//int
-//main(void)
-//{
-//	char *status;
-//	char *netstats;
-//	static unsigned long long int rec, sent;
-//
-//	parse_netdev(&rec, &sent);
-//    for (;;) {
-//        netstats = get_netusage(&rec, &sent);
-////        status = smprintf("[N: %s]", netstats);
-//        printf("%s\n",netstats);
-////        free(status);
-//        sleep(1);
-//    }
-//
-//	return 0;
-//}
-

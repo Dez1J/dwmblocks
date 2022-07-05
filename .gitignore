@@ -1,3 +1,5 @@
+# bear -- make, clangd's dir
+.cache/
 # Prerequisites
 *.d
 

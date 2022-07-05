@@ -15,6 +15,8 @@ static const Block blocks[] = {
     
 //	{"", "/home/jiang/.dwmbar/statusbar/release",					    0,		            0, NULL},
 	
+	{"", "/home/jiang/.dwmbar/statusbar/BTBattery",                     30,		            0, NULL},
+
 	{"", "/home/jiang/.dwmbar/statusbar/volume",                        0,		            10, NULL},
 
 	{"", "xbacklight |awk -F . '{printf \"  %s% \\n\",$1}'",			0,		            11, NULL},
@@ -30,7 +32,6 @@ static const Block blocks[] = {
 
 	{"", "/home/jiang/.dwmbar/statusbar/clock",						    60,		            0, NULL},
 
-//    {"", "/home/jiang/.dwmbar/statusbar/BTBattery",					300,		        13, NULL},
 //    {"", "/home/jiang/.dwmbar/statusbar/weather",						18000,	            5, NULL},
 //    {"", "/home/jiang/.dwmbar/statusbar/mpdstatus",					1,		            12, NULL},
 //    {"", "/home/jiang/.dwmbar/statusbar/torrent",						20,		            15, NULL},

@@ -7,28 +7,13 @@
 #include <string.h>
 #include <errno.h>
 
-//char *
-//smprintf(char *fmt, ...)
-//{
-//	va_list fmtargs;
-//	char *buf = NULL;
-//
-//	va_start(fmtargs, fmt);
-//	if (vasprintf(&buf, fmt, fmtargs) == -1){
-//		fprintf(stderr, "malloc vasprintf\n");
-//		exit(1);
-//    }
-//	va_end(fmtargs);
-//
-//	return buf;
-//}
-
 char *
 getbattery(){
     long lnum1, lnum2 = 0;
     char *status = malloc(sizeof(char)*12);
     char s = '?';
     FILE *fp = NULL;
+    char *ret;
     if ((fp = fopen(BATT_NOW, "r"))) {
         fscanf(fp, "%ld\n", &lnum1);
         fclose(fp);
@@ -44,7 +29,10 @@ getbattery(){
             s = '-';
         if (strcmp(status,"Full") == 0)
             s = '=';
-        return smprintf("%c%ld%% \n", s,(lnum1/(lnum2/100)));
+        sprintf(ret, "%c%ld%%\n", s, (lnum1/(lnum2/100)) );
+        return ret;
+        /* return smprintf("%c%ld%% \n", s,(lnum1/(lnum2/100))); */
     }
-    else return smprintf("");
+    else return "Err\n";
+    /* else return smprintf(""); */
 }
