@@ -38,8 +38,7 @@ static Display *dpy;
 static int screen;
 static Window root;
 static char statusbar[LENGTH(blocks)][CMDLENGTH] = {0};
-/* static char statusstr[2][256]; */
-static char statusstr[2][512];
+static char statusstr[2][256];
 static int statusContinue = 1;
 static void (*writestatus)() = setroot;
 
@@ -57,17 +56,14 @@ void getcmd(const Block *block, char *output) {
     fgets(output + i, CMDLENGTH - i, cmdf);
     pclose(cmdf);
   } else {
- //   strcpy(output + i, block->func());
-//    memcpy(output + i, block->func(), CMDLENGTH -1 - i);
-    memcpy(output + i, block->func(), CMDLENGTH - i);
+    /* memcpy(output + i, block->func(), CMDLENGTH - i); */
+    snprintf(output + i, CMDLENGTH -i, "%s", block->func());
+    /* printf("output length %d, %d\n", (int)strlen(output), block->interval); */
   }
   i = strlen(output);
   if (delim != '\0' && --i)
     output[i++] = delim;
   output[i++] = '\0';
-  // char * (*funcP)();
-  // funcP = getmpdstat;
-  // strcpy(output, (*funcP)());
 }
 
 void getcmds(int time) {
@@ -110,6 +106,7 @@ void setroot() {
   if (!getstatus(statusstr[0],
                  statusstr[1])) // Only set root if text has changed.
     return;
+  /* printf("statusstr length: %d\n", (int)strlen(statusstr[0])); */
   Display *d = XOpenDisplay(NULL);
   if (d) {
     dpy = d;

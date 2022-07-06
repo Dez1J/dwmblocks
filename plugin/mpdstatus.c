@@ -1,12 +1,11 @@
 //  gcc -o mpdstatus mpdstatus.c -lmpdclient
 #include <mpd/client.h>
-#include <mpd/status.h>
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-void cut(char *sub, const char *, int n1, char *es);
+void trim(char *, const char *, int, char *, int );
 
 /* smprintf may be unsafe, or use 'asprintf' */
 char *smprintf(char *fmt, ...) {
@@ -58,17 +57,10 @@ char *getmpdstat() {
 
     int len = strlen(mpd_song_get_tag(song, MPD_TAG_TITLE, 0));
     char title[31] = {""};
-    if (len > 30) {
-      char end[3] = {"..."};
-      strncpy(title, mpd_song_get_tag(song, MPD_TAG_TITLE, 0), 27);
-      strncpy(title + 27, end, 3);
-      title[30] = '\0';
-    } else {
-      strcpy(title, mpd_song_get_tag(song, MPD_TAG_TITLE, 0));
-    }
+    trim(title, mpd_song_get_tag(song, MPD_TAG_TITLE, 0), 30, "...", 3);
 
     char artist[16];
-    cut(artist, mpd_song_get_tag(song, MPD_TAG_ARTIST, 0), 15, "...");
+    trim(artist, mpd_song_get_tag(song, MPD_TAG_ARTIST, 0), 15, "...", 3);
 
     char date[5] = {""};
     strncpy(date, mpd_song_get_tag(song, MPD_TAG_DATE, 0) ?: "none", 4);
@@ -96,16 +88,13 @@ char *getmpdstat() {
   return retstr;
 }
 
-void cut(char *sub, const char *ms, int n1, char *es) {
-  int len1 = strlen(ms);
-  int len2 = strlen(es);
-  if (len1 > n1) {
-    strncpy(sub, ms, n1 - len2);
-    strncpy(sub + n1 - len2, es, len2);
-    sub[n1] = '\0';
-  } else {
-    strcpy(sub, ms);
-  }
+void trim(char *trim, const char *raw, int maxlen, char *altstr, int altstrlen)
+{
+    int rawlen;
+    rawlen = snprintf(trim, maxlen+1, "%s", raw);
+    /* printf("%d\n", rawlen); */
+    if ( rawlen > maxlen)
+        snprintf(trim+maxlen-altstrlen, altstrlen+1, "%s", altstr); // -1 for end '\0'
 }
 
 //int main(int argc, char *argv[])
