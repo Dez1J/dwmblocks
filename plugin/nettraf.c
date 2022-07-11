@@ -4,6 +4,8 @@
 #include <stdarg.h>
 #include <string.h>
 
+#include "../utils.h"
+
 static unsigned long long int rec, sent;
 
 int
@@ -55,12 +57,13 @@ calculate_speed(char *speedstr, unsigned long long int newval, unsigned long lon
 }
 
 char *
-get_netusage(unsigned long long int *rec, unsigned long long int *sent)
+/* get_netusage(unsigned long long int *rec, unsigned long long int *sent) */
+get_netusage()
 {
 	unsigned long long int newrec, newsent;
 	newrec = newsent = 0;
 	char downspeedstr[15], upspeedstr[15];
-	static char retstr[42];
+	/* static char retstr[42]; */
 	int retval;
 
 	retval = parse_netdev(&newrec, &newsent);
@@ -69,18 +72,15 @@ get_netusage(unsigned long long int *rec, unsigned long long int *sent)
 	    exit(1);
 	}
 
-	calculate_speed(downspeedstr, newrec, *rec);
-	calculate_speed(upspeedstr, newsent, *sent);
+	calculate_speed(downspeedstr, newrec, rec);
+	calculate_speed(upspeedstr, newsent, sent);
 
 	//↓↑ 
-	sprintf(retstr, " %s %s \n", downspeedstr, upspeedstr);
+	/* sprintf(retstr, " %s %s \n", downspeedstr, upspeedstr); */
+    char *retstr;
+	retstr = smprintf(" ^c#9999FF^%s %s^d^ \n", downspeedstr, upspeedstr);
 
-	*rec = newrec;
-	*sent = newsent;
+	rec = newrec;
+	sent = newsent;
 	return retstr;
-}
-
-char *
-show_nettraf(){
-    return get_netusage(&rec, &sent);
 }

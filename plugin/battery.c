@@ -7,6 +7,8 @@
 #include <string.h>
 #include <errno.h>
 
+#include "../utils.h"
+
 char *
 getbattery(){
     long lnum1, lnum2 = 0;
@@ -29,10 +31,13 @@ getbattery(){
             s = '-';
         if (strcmp(status,"Full") == 0)
             s = '=';
-        sprintf(ret, "%c%ld%%\n", s, (lnum1/(lnum2/100)) );
-        return ret;
+        ret = smprintf("^c#98FB98^  %c%ld%%^d^\n", s, (lnum1/(lnum2/100)) );
+        /* printf("%s\n", ret); */
+        /* printf("%d\n",(int)strlen(ret)); */
         /* return smprintf("%c%ld%% \n", s,(lnum1/(lnum2/100))); */
     }
-    else return "Err\n";
     /* else return smprintf(""); */
+    else
+        ret = smprintf("Err\n");
+    return ret;
 }

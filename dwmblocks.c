@@ -38,7 +38,7 @@ static Display *dpy;
 static int screen;
 static Window root;
 static char statusbar[LENGTH(blocks)][CMDLENGTH] = {0};
-static char statusstr[2][256];
+static char statusstr[2][512];
 static int statusContinue = 1;
 static void (*writestatus)() = setroot;
 
@@ -57,7 +57,11 @@ void getcmd(const Block *block, char *output) {
     pclose(cmdf);
   } else {
     /* memcpy(output + i, block->func(), CMDLENGTH - i); */
-    snprintf(output + i, CMDLENGTH -i, "%s", block->func());
+    char *ret;
+    ret = block->func();
+    /* snprintf(output + i, CMDLENGTH -i, "%s", block->func()); */
+    snprintf(output + i, CMDLENGTH -i, "%s", ret);
+    free(ret);
     /* printf("output length %d, %d\n", (int)strlen(output), block->interval); */
   }
   i = strlen(output);

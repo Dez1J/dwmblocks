@@ -5,32 +5,9 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "../utils.h"
+
 void trim(char *, const char *, int, char *, int );
-
-/* smprintf may be unsafe, or use 'asprintf' */
-char *smprintf(char *fmt, ...) {
-  va_list fmtargs;
-  char *ret;
-  int len;
-
-  va_start(fmtargs, fmt);
-  /* first vsnprintf: detection of str */
-  len = vsnprintf(NULL, 0, fmt, fmtargs);
-  va_end(fmtargs);
-
-  ret = malloc(++len);
-  if (ret == NULL) {
-    perror("malloc");
-    exit(1);
-  }
-
-  va_start(fmtargs, fmt);
-  /* second vsnprintf: assign str to *ret actually */
-  vsnprintf(ret, len, fmt, fmtargs);
-  va_end(fmtargs);
-
-  return ret;
-}
 
 /* simple function to retrieve mpd status */
 char *getmpdstat() {
@@ -79,8 +56,10 @@ char *getmpdstat() {
     br = mpd_status_get_kbit_rate(theStatus);
     mpd_song_free(song);
     retstr =
-        smprintf(" %s - %s  [%s%s %s] %dk @%s \n", title, artist,
+        smprintf(" ^c#FFFFCC^%s - %s  [%s%s %s] %dk @%s^d^ \n", title, artist,
                  mpdstat, play_flag, pos_pl, br, date);
+    free(pos_pl);
+    free(play_flag);
   } else
     retstr = smprintf(" [S] \n");
   mpd_response_finish(conn);
