@@ -1,1 +1,0 @@
-char *smprintf(char *fmt, ...);

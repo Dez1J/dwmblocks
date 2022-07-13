@@ -1,8 +1,8 @@
 /* #include "utils.h" */
 /* #include "utils.h" */
-#include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdarg.h>
 
 /* smprintf may be unsafe, or use 'asprintf' */
 char *smprintf(char *fmt, ...) {

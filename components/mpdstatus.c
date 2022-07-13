@@ -1,11 +1,10 @@
 //  gcc -o mpdstatus mpdstatus.c -lmpdclient
 #include <mpd/client.h>
-#include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-#include "../utils.h"
+#include "../blocks.h"
 
 void trim(char *, const char *, int, char *, int );
 

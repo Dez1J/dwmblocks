@@ -1,2 +1,0 @@
-1.change signal value in blocks.h 
-2.bind shutcut key with command : xbacklight -inc 10 && pkill -RTMIN+11 dwmblocks , eg.RTMIN+11,11 is the signal value

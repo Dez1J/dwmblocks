@@ -11,5 +11,70 @@
     "directory": "/home/jiang/Suckless_J/BarStatus/dwmblocks_Modified",
     "file": "/home/jiang/Suckless_J/BarStatus/dwmblocks_Modified/dwmblocks.c",
     "output": "/home/jiang/Suckless_J/BarStatus/dwmblocks_Modified/dwmblocks"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-c",
+      "-g",
+      "-o",
+      "dwmblocks",
+      "components/mpdstatus.c"
+    ],
+    "directory": "/home/jiang/Suckless_J/BarStatus/dwmblocks_Modified",
+    "file": "/home/jiang/Suckless_J/BarStatus/dwmblocks_Modified/components/mpdstatus.c",
+    "output": "/home/jiang/Suckless_J/BarStatus/dwmblocks_Modified/dwmblocks"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-c",
+      "-g",
+      "-o",
+      "dwmblocks",
+      "components/cpu_usage.c"
+    ],
+    "directory": "/home/jiang/Suckless_J/BarStatus/dwmblocks_Modified",
+    "file": "/home/jiang/Suckless_J/BarStatus/dwmblocks_Modified/components/cpu_usage.c",
+    "output": "/home/jiang/Suckless_J/BarStatus/dwmblocks_Modified/dwmblocks"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-c",
+      "-g",
+      "-o",
+      "dwmblocks",
+      "components/battery.c"
+    ],
+    "directory": "/home/jiang/Suckless_J/BarStatus/dwmblocks_Modified",
+    "file": "/home/jiang/Suckless_J/BarStatus/dwmblocks_Modified/components/battery.c",
+    "output": "/home/jiang/Suckless_J/BarStatus/dwmblocks_Modified/dwmblocks"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-c",
+      "-g",
+      "-o",
+      "dwmblocks",
+      "components/nettraf.c"
+    ],
+    "directory": "/home/jiang/Suckless_J/BarStatus/dwmblocks_Modified",
+    "file": "/home/jiang/Suckless_J/BarStatus/dwmblocks_Modified/components/nettraf.c",
+    "output": "/home/jiang/Suckless_J/BarStatus/dwmblocks_Modified/dwmblocks"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-c",
+      "-g",
+      "-o",
+      "dwmblocks",
+      "components/utils.c"
+    ],
+    "directory": "/home/jiang/Suckless_J/BarStatus/dwmblocks_Modified",
+    "file": "/home/jiang/Suckless_J/BarStatus/dwmblocks_Modified/components/utils.c",
+    "output": "/home/jiang/Suckless_J/BarStatus/dwmblocks_Modified/dwmblocks"
   }
 ]

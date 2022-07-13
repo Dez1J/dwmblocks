@@ -8,18 +8,6 @@
 //#define CMDLENGTH		50
 #define CMDLENGTH 100
 
-#include "plugin/mpdstatus.c"
-#include "plugin/nettraf.c"
-#include "plugin/battery.c"
-#include "plugin/capslock_s.c"
-
-typedef struct {
-  char *icon;
-  char *command;
-  unsigned int interval;
-  unsigned int signal;
-  char *(*func)();
-} Block;
 void sighandler(int num);
 void getcmds(int time);
 #ifndef __OpenBSD__
