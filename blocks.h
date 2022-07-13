@@ -31,7 +31,7 @@ static const Block blocks[] = {
 
 	{"", "/home/jiang/.dwmbar/statusbar/volume",                         0,		            10, NULL},
 
-	{"", NULL,			                                                 0,		            11, NULL},
+	{"", "/home/jiang/.dwmbar/statusbar/xbacklight",			         0,		            11, NULL},
 
     {"", NULL,				                                             1,		             0, cpu_usage},
 
