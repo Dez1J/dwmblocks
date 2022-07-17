@@ -13,7 +13,7 @@ char *getmpdstat() {
   struct mpd_song *song = NULL;
   char *mpdstat = NULL, *pos_pl = NULL, *play_flag = NULL;
   char *retstr = NULL;
-  int elapsed = 0, total = 0, remain = 0, br = 0;
+  int br = 0;
   struct mpd_connection *conn;
   if (!(conn = mpd_connection_new("localhost", 6600, 30000)) ||
       mpd_connection_get_error(conn)) {
@@ -31,7 +31,6 @@ char *getmpdstat() {
     mpd_response_next(conn);
     song = mpd_recv_song(conn);
 
-    int len = strlen(mpd_song_get_tag(song, MPD_TAG_TITLE, 0));
     char title[31] = {""};
     trim(title, mpd_song_get_tag(song, MPD_TAG_TITLE, 0), 30, "...", 3);
 
@@ -61,6 +60,7 @@ char *getmpdstat() {
     free(play_flag);
   } else
     retstr = smprintf(" [S] \n");
+  mpd_status_free(theStatus);
   mpd_response_finish(conn);
   mpd_connection_free(conn);
   return retstr;

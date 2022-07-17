@@ -7,8 +7,14 @@ COM =\
 	 components/battery\
 	 components/nettraf
 
+CC = gcc
+
+# Flags for Clang or Gcc
+CFLAGS = -Ofast -g
+#CFLAGS = -O0 -g -Wall -Wextra
+
 output: dwmblocks.c blocks.h
-	cc `pkg-config --cflags x11` `pkg-config --libs x11` -lmpdclient -g dwmblocks.c $(COM:=.c) $(REQ:=.c) -o dwmblocks
+	$(CC) $(CFLAGS) `pkg-config --cflags x11` `pkg-config --libs x11` -lmpdclient $(COM:=.c) $(REQ:=.c) dwmblocks.c -o dwmblocks
 clean:
 	rm -f *.o *.gch dwmblocks
 install: output

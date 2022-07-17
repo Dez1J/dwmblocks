@@ -38,5 +38,6 @@ getbattery(){
     /* else return smprintf(""); */
     else
         ret = smprintf("Err\n");
+    free(status);
     return ret;
 }
